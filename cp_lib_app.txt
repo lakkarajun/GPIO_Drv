@@ -1,0 +1,18 @@
+echo "Mouting /dev/sdb1 as /mnt/rootfs ..."
+sudo mount /dev/sdb2 /mnt/rootfs
+echo "Delete libgpiod.so.2.1.1 in /usr/lib/ ..."
+sudo rm -f /mnt/rootfs/usr/lib/libgpiod.so.2.1.1
+echo "Delete gpioset in /usr/lib/ ..."
+sudo rm -f /mnt/rootfs/usr/bin/gpioset
+echo "Delete gpiomon in /usr/lib/ ..."
+sudo rm -f /mnt/rootfs/usr/bin/gpiomon
+echo "Copying gpioset in /usr/lib/. ..."
+sudo cp tools/gpioset /mnt/rootfs/usr/bin/.
+echo "Copying gpiomon in /usr/lib/. ..."
+sudo cp tools/gpiomon /mnt/rootfs/usr/bin/.
+echo "Copying libgpiod.so.2.1.1 in /usr/lib/. ..."
+sudo cp lib/.libs/libgpiod.so.2.1.1 /mnt/rootfs/usr/lib/.
+sudo sync
+echo "Unmount /mnt/rootfs ..."
+sudo umount /mnt/rootfs
+echo "Done"
